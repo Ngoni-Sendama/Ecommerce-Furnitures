@@ -24,4 +24,13 @@ class Product extends Model
         'is_visible',
         'include_shipping',
     ];
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
