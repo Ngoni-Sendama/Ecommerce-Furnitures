@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::get('category',[CategoryController::class, 'index'])->name('category');
 
 Route::get('product', [ProductController::class, 'index'])->name('products');
+Route::get('product/detail', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

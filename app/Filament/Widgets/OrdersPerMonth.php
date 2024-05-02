@@ -19,6 +19,7 @@ class OrdersPerMonth extends ApexChartWidget
      * @var string|null
      */
     protected static ?string $heading = 'OrdersPerMonth';
+    protected static ?int $navigationSort = 4;
 
     /**
      * Chart options (series, labels, types, size, animations...)
