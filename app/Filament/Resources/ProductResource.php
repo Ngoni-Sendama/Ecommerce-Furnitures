@@ -41,7 +41,7 @@ class ProductResource extends Resource
                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                         Forms\Components\TextInput::make('slug')
                             ->dehydrated()
-                            ->disabled()
+                            // ->disabled()
                             ->required(),
                         Forms\Components\RichEditor::make('description')
                             ->required()
@@ -123,7 +123,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('brand_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('category_id')
+                Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')

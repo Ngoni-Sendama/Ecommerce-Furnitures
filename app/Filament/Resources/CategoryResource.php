@@ -38,11 +38,11 @@ class CategoryResource extends Resource
                             ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                         Forms\Components\TextInput::make('slug')
                             ->dehydrated()
-                            ->disabled()
+                            // ->disabled()
                             ->required(),
                         Forms\Components\Select::make('parent')
                             ->columnSpanFull()
-                            ->options(Category::all()->pluck('name', 'id')),
+                            ->options(Category::all()->pluck('name', 'name')),
                         Forms\Components\Toggle::make('is_visible')
 
                             ->label('Visible to customers.'),
@@ -59,11 +59,11 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('parent')
-                    ->searchable(),
+                    ->searchable()
+                    ->description(function (Category $record): string {
+                        return $record->parent ?? ''; // If sparent is null, return an empty string
+                    }),
+
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
